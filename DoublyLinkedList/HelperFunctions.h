@@ -1,21 +1,34 @@
-//
-//  HelperFunctions.h
-//  DoublyLinkedList
-//
-//  Created by Jacob on 2/22/16.
-//  Copyright © 2016 UmbrellaCorp. All rights reserved.
-//
+/*
+ * Copyright (c) 2016 Mario Jacob García Navarro
+ *
+ * File name: HelperFunctions..h
+ *
+ * Author:  Mario Jacob García Navarro
+ *
+ * Purpose: Support routine that handle some problems with the
+ *          free() function
+ *
+ * References:
+ *          Understanding and Using C Pointers - Richard Reese
+ *          O'Reilly (2013)
+ *
+ * Restrictions:
+ *          All functions return (-1) in case something went wrong
+ *
+ * Revision history:
+ *          Feb 22 14:52 2016 - File created
+ *
+ * Error handling:
+ *          None
+ *
+ */
 
-#ifndef HelperFunctions_h
-#define HelperFunctions_h
-
-#include <stdio.h>
-
-#endif /* HelperFunctions_h */
 
 
 /*************************************************************************
  *                    Helper Functions and MACROS                        *
  ************************************************************************/
+/* Create a MACRO so the user can call the function without sending the 
+ address of the pointer to be freed */
 #define safeFree(p) saferFree((void**)&(p))
 void saferFree(void **h);
