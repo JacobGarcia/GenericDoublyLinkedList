@@ -144,7 +144,7 @@ node_p FindInList(list_p myList_p, const void *value_p, int key){
         assert(current);
         
         current = ListHead(myList_p);
-        /* Iterate over the list to actually print the information */
+        /* Iterate over the nodes of the list to search the specified information in value_p */
         while (current != NULL) {
             int comparisonResult = myList_p->compare(current->data_p, value_p, key);
             if (comparisonResult == 1)
@@ -156,4 +156,22 @@ node_p FindInList(list_p myList_p, const void *value_p, int key){
     }
     
     return NULL;
+}
+
+int DestroyList(list_p myList_p){
+    if (myList_p) {
+        node_p current = malloc(sizeof(node));
+        assert(current);
+        
+        current = ListHead(myList_p);
+        while (current != NULL) {
+            myList_p->destroy(current);
+            current = current->next_p;
+        }
+        
+        return EXIT_SUCCESS;
+
+    }
+    
+    return EXIT_FAILURE;
 }

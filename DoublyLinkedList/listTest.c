@@ -196,10 +196,10 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
                 printf("Error printing the list\n");
 
             /**** Test finding a number from the structure ****/
-            /*data_p = (myData *) malloc(sizeof(myData));
-            assert (data_p != NULL);*/   /* Abort if not enough memory */
+            data_p = (myData *) malloc(sizeof(myData));
+            assert (data_p != NULL);   /* Abort if not enough memory */
 
-            /*data_p->number = 10;
+            data_p->number = 10;
             aString = (char *) malloc((sizeof(char) *
                                        strlen("Launchpad")) + 1);
             strcpy(aString, "Launchpad");
@@ -209,24 +209,24 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
             if (aNode == NULL){
                 printf("Error: failed to find selected node \n");
             } else {
-                printf("\nFound element %s in the list: \n",
+                printf("\nFound element %s in the list:",
                        ((myData *)(aNode->data_p))->theString);
                 PrintItem(aNode->data_p);
-            }*/
+            }
 
             /**** Test finding a string from the structure ****/
-            /*aNode = FindInList(theList_p, data_p, STR);
+            aNode = FindInList(theList_p, data_p, STR);
             if (aNode == NULL){
                 printf("Error: failed to find selected node \n");
             } else {
-                printf("\nFound element %s in the list: \n",
+                printf("\n\nFound element %s in the list:",
                        ((myData *)(aNode->data_p))->theString);
                 PrintItem(aNode->data_p);
-            }*/
+            }
 
             /* Deallocate user data for these two previous tests */
-            /*free(data_p->theString);
-            free(data_p);*/
+            free(data_p->theString);
+            free(data_p);
 
 //            /***** Test finding an element by its integer value ****/
 //            nodeValue = 8;
@@ -262,10 +262,10 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
 //                printf("\nCopy of the list was deleted successfully\n");
 
             /***** Destroy the list *****/
-            /*if (DestroyList(theList_p) != EXIT_SUCCESS)
+            if (DestroyList(theList_p) != EXIT_SUCCESS)
                 printf ("Error deleting the list\n");
             else
-                printf("\nOriginal list was deleted successfully\n");*/
+                printf("\nOriginal list was deleted successfully\n");
         }
         fclose (fp);                        /* Close the input data file */
         return (EXIT_SUCCESS);
