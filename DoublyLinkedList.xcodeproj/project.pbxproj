@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		168904C21C6EBE2000F73F05 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 168904C11C6EBE2000F73F05 /* main.c */; };
+		162E527E1C7BAF4B00276201 /* GenericLists.c in Sources */ = {isa = PBXBuildFile; fileRef = 162E527D1C7BAF4B00276201 /* GenericLists.c */; };
+		162E52801C7BAF5E00276201 /* UserDefined.c in Sources */ = {isa = PBXBuildFile; fileRef = 162E527F1C7BAF5E00276201 /* UserDefined.c */; };
+		162E52831C7BE3C700276201 /* HelperFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = 162E52811C7BE3C700276201 /* HelperFunctions.c */; };
+		168904CC1C6ED04D00F73F05 /* FileIO.c in Sources */ = {isa = PBXBuildFile; fileRef = 168904CA1C6ED04D00F73F05 /* FileIO.c */; };
+		168904CE1C6ED07000F73F05 /* listTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 168904CD1C6ED07000F73F05 /* listTest.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +27,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		162E527D1C7BAF4B00276201 /* GenericLists.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GenericLists.c; sourceTree = "<group>"; };
+		162E527F1C7BAF5E00276201 /* UserDefined.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = UserDefined.c; sourceTree = "<group>"; };
+		162E52811C7BE3C700276201 /* HelperFunctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = HelperFunctions.c; sourceTree = "<group>"; };
+		162E52821C7BE3C700276201 /* HelperFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperFunctions.h; sourceTree = "<group>"; };
 		168904BE1C6EBE2000F73F05 /* DoublyLinkedList */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DoublyLinkedList; sourceTree = BUILT_PRODUCTS_DIR; };
-		168904C11C6EBE2000F73F05 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		168904C81C6EBEFE00F73F05 /* UserDefined.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefined.h; sourceTree = "<group>"; };
+		168904C91C6EC36E00F73F05 /* GenericLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericLists.h; sourceTree = "<group>"; };
+		168904CA1C6ED04D00F73F05 /* FileIO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FileIO.c; sourceTree = "<group>"; };
+		168904CB1C6ED04D00F73F05 /* FileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileIO.h; sourceTree = "<group>"; };
+		168904CD1C6ED07000F73F05 /* listTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = listTest.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +69,15 @@
 		168904C01C6EBE2000F73F05 /* DoublyLinkedList */ = {
 			isa = PBXGroup;
 			children = (
-				168904C11C6EBE2000F73F05 /* main.c */,
+				168904CD1C6ED07000F73F05 /* listTest.c */,
+				168904CA1C6ED04D00F73F05 /* FileIO.c */,
+				168904CB1C6ED04D00F73F05 /* FileIO.h */,
+				162E527D1C7BAF4B00276201 /* GenericLists.c */,
+				168904C91C6EC36E00F73F05 /* GenericLists.h */,
+				162E52811C7BE3C700276201 /* HelperFunctions.c */,
+				162E52821C7BE3C700276201 /* HelperFunctions.h */,
+				162E527F1C7BAF5E00276201 /* UserDefined.c */,
+				168904C81C6EBEFE00F73F05 /* UserDefined.h */,
 			);
 			path = DoublyLinkedList;
 			sourceTree = "<group>";
@@ -118,7 +138,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				168904C21C6EBE2000F73F05 /* main.c in Sources */,
+				162E52831C7BE3C700276201 /* HelperFunctions.c in Sources */,
+				162E52801C7BAF5E00276201 /* UserDefined.c in Sources */,
+				168904CE1C6ED07000F73F05 /* listTest.c in Sources */,
+				162E527E1C7BAF4B00276201 /* GenericLists.c in Sources */,
+				168904CC1C6ED04D00F73F05 /* FileIO.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +261,7 @@
 				168904C71C6EBE2000F73F05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
