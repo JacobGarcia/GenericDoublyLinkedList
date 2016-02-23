@@ -109,23 +109,23 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
             if (PrintList(theList_p) != EXIT_SUCCESS)
                 printf("Error printing the list\n");
 
-            /*
+            
             if (Delete(theList_p, ListTail(theList_p),
-                       (void **)&data_p) == 0 && theList_p->destroy!= NULL){*/
+                       (void **)&data_p) == 0 && theList_p->destroy!= NULL){
                 /* Call the user defined function to deallocate the data */
-            /*    theList_p->destroy(data_p);
+                theList_p->destroy(data_p);
             } else
-                printf("Error deleting from the head\n");
+                printf("Error deleting from the tail\n");
 
-            printf("\n Test deletion from the Tail:\n");
+            printf("\nTest deletion from the Tail:\n");
             if (PrintList(theList_p) != EXIT_SUCCESS)
-                printf("Error printing the list\n");*/
+                printf("Error printing the list\n");
 
             /****** Test Insertion at the Head *****/
-           /* data_p = (myData *) malloc(sizeof(myData));
-            assert (data_p != NULL);*/   /* Abort if not enough memory */
+            data_p = (myData *) malloc(sizeof(myData));
+            assert (data_p != NULL);   /* Abort if not enough memory */
 
-           /* data_p->number = 9;
+            data_p->number = 9;
             aString = (char *) malloc((sizeof(char) *
                                       strlen("Gyro Gearloose")) + 1);
             strcpy(aString, "Gyro Gearloose");
@@ -141,25 +141,25 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
 
             printf("\n Test insertion at the Head:\n");
             if (PrintList(theList_p) != EXIT_SUCCESS)
-                printf("Error printing the list\n");*/
+                printf("Error printing the list\n");
 
             /***** Test deletion at the head *****/
-          /*  if (Delete(theList_p, ListHead(theList_p),
-                       (void **)&data_p) == 0 && theList_p->destroy!= NULL){*/
+            if (Delete(theList_p, ListHead(theList_p),
+                       (void **)&data_p) == 0 && theList_p->destroy!= NULL){
                 /* Call the user defined function to deallocate the data */
-           /*     theList_p->destroy(data_p);
+                theList_p->destroy(data_p);
             } else
                 printf("Error deleting from the head\n");
 
             printf("\n Test deletion from the Head:\n");
             if (PrintList(theList_p) != EXIT_SUCCESS)
-                printf("Error printing the list\n");*/
+                printf("Error printing the list\n");
 
             /***** Test insertion in the middle *****/
-          /*  data_p = (myData *) malloc(sizeof(myData));
-            assert (data_p != NULL); */  /* Abort if not enough memory */
+            data_p = (myData *) malloc(sizeof(myData));
+            assert (data_p != NULL);   /* Abort if not enough memory */
 
-           /* data_p->number = 10;
+            data_p->number = 10;
             aString = (char *) malloc((sizeof(char) *
                                        strlen("Launchpad")) + 1);
             strcpy(aString, "Launchpad");
@@ -176,24 +176,24 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
 
             printf("\n Test insertion in the middle:\n");
             if (PrintList(theList_p) != EXIT_SUCCESS)
-                printf("Error printing the list\n");*/
+                printf("Error printing the list\n");
 
             /***** Test deletion in the middle & finding a string *****/
-           /* aNode = FindInList(theList_p, "Donald", SINGLESTR);
+            aNode = FindInList(theList_p, "Donald", SINGLESTR);
             if (aNode == NULL){
                 printf("Error: failed to find selected node \n");
             }
 
             if (Delete(theList_p, aNode,
                        (void **)&data_p) == 0 && theList_p->destroy!= NULL){
-                *//* Call the user defined function to deallocate the data */
-                /*theList_p->destroy(data_p);
+                /* Call the user defined function to deallocate the data */
+                theList_p->destroy(data_p);
             } else
                 printf("Error deleting from the middle\n");
 
             printf("\n Test finding a string & deletion from middle:\n");
             if (PrintList(theList_p) != EXIT_SUCCESS)
-                printf("Error printing the list\n");*/
+                printf("Error printing the list\n");
 
             /**** Test finding a number from the structure ****/
             /*data_p = (myData *) malloc(sizeof(myData));

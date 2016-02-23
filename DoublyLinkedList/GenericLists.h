@@ -61,7 +61,7 @@ typedef struct list_{
     void * (* copy) (const void *source_p);
 }list;
 
-typedef struct list_ *list_p; /***************************/
+typedef struct list_ *list_p; 
 
 /* Used in the SortList and FindInList functions*/
 enum order {ERROR = -1, EQUAL = 0, LESS = 1, GREATER = 2, NOTEQUAL = 3};

@@ -65,6 +65,8 @@ int Insert(list_p myList_p, node_p item_p, const void *data_p){
             /* It exists a head */
             listNode->next_p = ListHead(myList_p); /* The next node for the new head is the previous head */
             ListHead(myList_p)->prev_p = listNode; /* The previous head now has a previous node, which is the new head */
+            ListHead(myList_p) = listNode; /* This node is now the head */
+
         }
         
         /*** Insert at the middle ***/
@@ -95,10 +97,63 @@ int PrintList(list_p myList_p){
             current = current->next_p;
         }
         
-        safeFree(current);
+        printf("\n");
         
         return EXIT_SUCCESS;
     }
     
     return EXIT_FAILURE;
+}
+
+int Delete(list_p myList_p, node_p item_p, void **data_h){
+    
+    if (myList_p){
+        if (item_p == ListHead(myList_p) || item_p == NULL) {
+            /* Is the head the only item on the list? */
+            if (ListHead(myList_p)->next_p == NULL)
+                ListHead(myList_p) = ListTail(myList_p) = NULL; /* There is nothing left on the list */
+            else {
+                ListHead(myList_p) = ListHead(myList_p)->next_p; /* The head is now the next element */
+                ListHead(myList_p)->prev_p = NULL; /* The head never points to a previous node */
+            }
+        }
+        else {
+            if (item_p != ListTail(myList_p)) /* The tail does not have a next node */
+                item_p->next_p->prev_p = item_p->prev_p;
+            
+            /* Update the pointers */
+            item_p->prev_p->next_p = item_p->next_p;
+        }
+        
+        /* Move the address of the data_p pointer in order to delete correctly */
+        *data_h = (item_p->data_p);
+        
+        safeFree(item_p);
+        
+        return EXIT_SUCCESS;
+    }
+
+    return EXIT_FAILURE;
+}
+
+node_p FindInList(list_p myList_p, const void *value_p, int key){
+    assert(myList_p);
+    
+    if (value_p) {
+        node_p current = malloc(sizeof(node));
+        assert(current);
+        
+        current = ListHead(myList_p);
+        /* Iterate over the list to actually print the information */
+        while (current != NULL) {
+            int comparisonResult = myList_p->compare(current->data_p, value_p, key);
+            if (comparisonResult == 1)
+                return current;
+            
+            current = current->next_p;
+        }
+        
+    }
+    
+    return NULL;
 }

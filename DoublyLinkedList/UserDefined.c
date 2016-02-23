@@ -29,6 +29,7 @@ int FreeItem(const void *data){
     
     if (userData) {
         safeFree(userData->theString);
+        safeFree(userData); /* Avoid Memory Leaks */
         return EXIT_SUCCESS;
     }
     
@@ -59,8 +60,17 @@ int CompareItems(const void *item1_p, const void *item2_p, int key){
             myData * userData1 = (myData *)item1_p;
             myData * userData2 = (myData *)item2_p;
             
-            if (userData1 && userData2)
-                return strcmp(userData1->theString, userData2->theString) + 1;
+            if (userData1 && userData2){
+                /* Strcmp returns: */
+                /* Negative if the string of userData1 appears before the userData2->string in lexicographical order */
+                /* Zero if the strings are equal */
+                /* Positive if the string of userData2 appears before the userData1->string in lexicographical order */
+                int result = strcmp(userData1->theString, userData2->theString);
+                if (result < 0) return 0;
+                if (result == 0) return 1;
+                if (result > 0) return 2;
+            }
+
             
             break;
         }
@@ -69,8 +79,16 @@ int CompareItems(const void *item1_p, const void *item2_p, int key){
             myData * userData1 = (myData *)item1_p;
             char * theString = (char *)item2_p;
             
-            if (userData1)
-                return strcmp(userData1->theString, theString) + 1;
+            if (userData1){
+                /* Strcmp returns: */
+                /* Negative if the string of userData1 appears before the theString in lexicographical order */
+                /* Zero if the strings are equal */
+                /* Positive if the theString of userData2 appears before the userData1->string in lexicographical order */
+                int result = strcmp(userData1->theString, theString);
+                if (result < 0) return 0;
+                if (result == 0) return 1;
+                if (result > 0) return 2;
+            }
             
             break;
         }
