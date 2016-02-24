@@ -19,7 +19,7 @@ int PrintItem(const void *data){
     /* If the data passed is not null continue to print the item */
     if (userData) {
         /* Print the number and the string of the data structure and exit */
-        printf("\nData element: %d %s", userData->number, userData->theString);
+        printf("Data element: %d %s\n", userData->number, userData->theString);
         return EXIT_SUCCESS;
     }
     

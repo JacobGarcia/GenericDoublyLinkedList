@@ -92,12 +92,12 @@ int PrintList(list_p myList_p){
         node_p current; /* Create a temporal pointer to iterate over the list */
         current = ListHead(myList_p); /* The temporal pointer always start at the head */
         /* Iterate over the list to actually print the information */
+        printf("\n");
         while (current != NULL) {
             myList_p->print(current->data_p); /* Call the print function of the list */
             current = current->next_p; /* Point to the next node */
         }
         
-        printf("\n");
         
         return EXIT_SUCCESS;
     }

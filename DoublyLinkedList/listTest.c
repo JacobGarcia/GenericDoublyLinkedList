@@ -210,7 +210,7 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
             if (aNode == NULL){
                 printf("Error: failed to find selected node \n");
             } else {
-                printf("\nFound element %s in the list:",
+                printf("\nFound element %s in the list:\n",
                        ((myData *)(aNode->data_p))->theString);
                 PrintItem(aNode->data_p);
             }
@@ -220,7 +220,7 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
             if (aNode == NULL){
                 printf("Error: failed to find selected node \n");
             } else {
-                printf("\n\nFound element %s in the list:",
+                printf("\n\nFound element %s in the list:\n",
                        ((myData *)(aNode->data_p))->theString);
                 PrintItem(aNode->data_p);
             }
