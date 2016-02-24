@@ -87,9 +87,9 @@ int Insert(list_p myList_p, node_p item_p, const void *data_p){
 }
 
 int PrintList(list_p myList_p){
-    node_p current = malloc(sizeof(node)); /* Create a temporal pointer to iterate over the list */
     
-    if (current) {
+    if (myList_p) {
+        node_p current; /* Create a temporal pointer to iterate over the list */
         current = ListHead(myList_p); /* The temporal pointer always start at the head */
         /* Iterate over the list to actually print the information */
         while (current != NULL) {
@@ -124,6 +124,8 @@ int Delete(list_p myList_p, node_p item_p, void **data_h){
         else {
             if (item_p != ListTail(myList_p)) /* The tail does not have a next node; while a node at the middle does */
                 item_p->next_p->prev_p = item_p->prev_p;
+            else
+                ListTail(myList_p) = item_p->prev_p;
             
             /* Update the pointers */
             item_p->prev_p->next_p = item_p->next_p;
@@ -135,6 +137,9 @@ int Delete(list_p myList_p, node_p item_p, void **data_h){
         /* Delete the node that points to the user defined structure */
         safeFree(item_p);
         
+        
+        (myList_p->numItems)--; /* Decrease the number of items counter in the list by one */
+
         return EXIT_SUCCESS;
     }
 
@@ -145,9 +150,7 @@ node_p FindInList(list_p myList_p, const void *value_p, int key){
     assert(myList_p); /* The list points to NULL */
     
     if (value_p) {
-        node_p current = malloc(sizeof(node)); /* Create a temporal pointer to iterate over the list */
-        assert(current); /* Could not allocate memory for the temporal pointer */
-        
+        node_p current; /* Create a temporal pointer to iterate over the list */
         current = ListHead(myList_p); /* The temporal pointer always start at the head */
         /* Iterate over the nodes of the list to search the specified information in value_p */
         while (current != NULL) {
@@ -165,15 +168,23 @@ node_p FindInList(list_p myList_p, const void *value_p, int key){
 
 int DestroyList(list_p myList_p){
     if (myList_p) {
-        node_p current = malloc(sizeof(node)); /* Create a temporal pointer to iterate over the list */
-        assert(current); /* Could not allocate memory for the temporal pointer */
+        node_p current; /* Create a temporal pointer to iterate over the list */
+        current = ListHead(myList_p); /* The temporal pointer always start at the head */
         
-        current = ListHead(myList_p); /* Create a temporal pointer to iterate over the list */
          /* Iterate over the nodes of the list to delete them */
         while (current != NULL) {
-            myList_p->destroy(current); /* Destroy the node that the temporal pointer is pointing too */
+            myList_p->destroy(current->data_p); /* Destroy the data node that the temporal pointer is pointing too */
             current = current->next_p; /* Point to the next node */
+            
+            if (current)
+                safeFree(current->prev_p); /* Free the actual node */
+            
+            (myList_p->numItems)--; /* Decrease the number of items counter in the list by one */
         }
+        
+        safeFree(ListTail(myList_p)); /* The tail is the only element left */
+        /* Destroy the List */
+        safeFree(myList_p);
         
         return EXIT_SUCCESS;
 

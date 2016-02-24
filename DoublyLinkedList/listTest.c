@@ -50,6 +50,7 @@
 #include "FileIO.h"        /* Used for the file access support functions */
 #include "GenericLists.h"      /* Used for all list management functions */
 #include "UserDefined.h"                /* All the user defined functions*/
+#include <unistd.h>
 
 /** @def  NUMPARAMS
  * @brief This is the expected number of parameters from the command line.
@@ -267,6 +268,7 @@ int main (int argc, const char * argv[]) {       /*! Program entry point */
             else
                 printf("\nOriginal list was deleted successfully\n");
         }
+        
         fclose (fp);                        /* Close the input data file */
         return (EXIT_SUCCESS);
     }
