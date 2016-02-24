@@ -1,5 +1,5 @@
 /**
- * GenericLists.c
+ *  GenericLists.c
  *  DoublyLinkedList
  *
  *  Created by Mario García on 2/22/16.
@@ -10,13 +10,13 @@
 #include <stdlib.h> /* Used for the malloc() function */
 #include <assert.h> /* Used for the assert() function */
 #include "GenericLists.h"       /* Header of the file */
-#include "HelperFunctions.h" /* Some helper functions */
+#include "HelperFunctions.h" /* Used for the safeFree */
 
 list_p CreateList(int (*destroy)(const void *data_p), int (*print)(const void *data_p), int (*compare)(const void *source_p, const void *dest_p, int key), void *(* copy)(const void *source_p)){
     list_p linkedList = malloc(sizeof(list));
     
     if (linkedList) {
-        /* Initialize the list*/
+        /* Initialize the list */
         linkedList->numItems = 0;
         linkedList->head_p = NULL;
         linkedList->tail_p = NULL;
@@ -70,7 +70,7 @@ int Insert(list_p myList_p, node_p item_p, const void *data_p){
         
         /*** Insert at the middle ***/
         else {
-            /* Move pointers of the existing item in relation with the the new item */
+            /* Move pointers of the existing item in relation with the new item */
             item_p->prev_p->next_p = listNode;
             listNode->prev_p = item_p->prev_p;
             item_p->prev_p = listNode;
@@ -95,7 +95,7 @@ int PrintList(list_p myList_p){
         printf("\n");
         while (current != NULL) {
             myList_p->print(current->data_p); /* Call the print function of the list */
-            current = current->next_p; /* Point to the next node */
+            current = current->next_p; /* Move the pointer to the next node */
         }
         
         
@@ -113,7 +113,7 @@ int Delete(list_p myList_p, node_p item_p, void **data_h){
         if (item_p == ListHead(myList_p) || item_p == NULL) {
             /* Is the head the only item on the list? */
             if (ListHead(myList_p)->next_p == NULL)
-                ListHead(myList_p) = ListTail(myList_p) = NULL; /* There is nothing left on the list; so everything set it to NULL */
+                ListHead(myList_p) = ListTail(myList_p) = NULL; /* There is nothing left on the list; set everything to NULL */
             else {
                 ListHead(myList_p) = ListHead(myList_p)->next_p; /* The head is now the next element */
                 ListHead(myList_p)->prev_p = NULL; /* The head never points to a previous node */
@@ -125,7 +125,7 @@ int Delete(list_p myList_p, node_p item_p, void **data_h){
             if (item_p != ListTail(myList_p)) /* The tail does not have a next node; while a node at the middle does */
                 item_p->next_p->prev_p = item_p->prev_p;
             else
-                ListTail(myList_p) = item_p->prev_p;
+                ListTail(myList_p) = item_p->prev_p; /* Update the tail reference */
             
             /* Update the pointers */
             item_p->prev_p->next_p = item_p->next_p;
@@ -155,10 +155,10 @@ node_p FindInList(list_p myList_p, const void *value_p, int key){
         /* Iterate over the nodes of the list to search the specified information in value_p */
         while (current != NULL) {
             int comparisonResult = myList_p->compare(current->data_p, value_p, key); /* Compare the information between nodes */
-            if (comparisonResult == 1) /* The node was found; so return it*/
+            if (comparisonResult == 1) /* The node was found; so return it */
                 return current;
             
-            current = current->next_p; /* Point to the next node */
+            current = current->next_p; /* Move the pointer to the next node */
         }
         
     }
@@ -174,7 +174,7 @@ int DestroyList(list_p myList_p){
          /* Iterate over the nodes of the list to delete them */
         while (current != NULL) {
             myList_p->destroy(current->data_p); /* Destroy the data node that the temporal pointer is pointing too */
-            current = current->next_p; /* Point to the next node */
+            current = current->next_p; /* Move the pointer to the next node */
             
             if (current)
                 safeFree(current->prev_p); /* Free the actual node */
@@ -182,7 +182,8 @@ int DestroyList(list_p myList_p){
             (myList_p->numItems)--; /* Decrease the number of items counter in the list by one */
         }
         
-        safeFree(ListTail(myList_p)); /* The tail is the only element left */
+        safeFree(ListTail(myList_p)); /* The tail is the only element left. Destroy it */
+        
         /* Destroy the List */
         safeFree(myList_p);
         

@@ -12,9 +12,6 @@
  *          Understanding and Using C Pointers - Richard Reese
  *          O'Reilly (2013)
  *
- * Restrictions:
- *          All functions return (-1) in case something went wrong
- *
  * Revision history:
  *          Feb 22 14:52 2016 - File created
  *

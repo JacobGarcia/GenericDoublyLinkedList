@@ -11,10 +11,10 @@
 #include <string.h> /* Used for the strcmp() function */
 #include <assert.h> /* Used for the assert() function */
 #include "UserDefined.h"        /* Header of the file */
-#include "HelperFunctions.h"       /* The header file */
+#include "HelperFunctions.h" /* Used for the safeFree */
 
 int PrintItem(const void *data){
-    myData * userData = (myData *)data; /* Cast the void pointer */
+    myData * userData = (myData *)data; /* Cast the void data pointer */
     
     /* If the data passed is not null continue to print the item */
     if (userData) {
@@ -27,12 +27,12 @@ int PrintItem(const void *data){
 }
 
 int FreeItem(const void *data){
-    myData * userData = (myData *)data; /* Cast the void pointer */
+    myData * userData = (myData *)data; /* Cast the void data pointer */
     
     /* If the data passed is not null continue to free the item */
     if (userData) {
         safeFree(userData->theString); /* Safe free the String */
-        safeFree(userData); /* Avoid Memory Leaks */
+        safeFree(userData); /* Avoid Memory Leaks; safe free the user data structure */
         return EXIT_SUCCESS;
     }
     
@@ -120,7 +120,7 @@ void * CopyItems (const void *source_p){
         if (source_p) {
             /* Copy the source information */
             userData->number = ((myData *)source_p)->number;
-            userData->theString = strdup(((myData *)source_p)->theString); /* theString is a pointer */
+            userData->theString = strdup(((myData *)source_p)->theString); /* theString is a pointer; duplicate it */
         }
         
         /* Return the copy */
